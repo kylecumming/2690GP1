@@ -1,8 +1,20 @@
 version: '3.4'
 
 services:
-  melonie:
-    image: melonie
+  mongodb:
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=melonie
+      - MONGO_INITDB_ROOT_PASSWORD=password999
+    image: mongodb:latest
+    
+    ports:
+      - 27015:27015
+    volumes:
+      - mongodb_container:/datafiles
+    
     build:
       context: .
       dockerfile: ./Dockerfile
+
+volumes:
+  mongodb_container:
